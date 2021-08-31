@@ -51,6 +51,11 @@ public class Verifications extends CommonOps {
     public static void nontExistenceOfElements(List <WebElement> elements){
         assertFalse(elements.size()>0);
     }
+
+    @Step("verify text with text")
+    public static void verifyText(String actual, String expected){
+        assertEquals(actual,expected);
+    }
 }
 
 
