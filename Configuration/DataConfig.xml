@@ -4,7 +4,11 @@
     <TimeOut>5</TimeOut>
 
     <!-- General -->
-    <PlatformName>mobile</PlatformName>
+    <PlatformName>api</PlatformName>
+
+    <!--Authorization -->
+    <UserName>admin</UserName>
+    <Password>admin</Password>
 
     <!-- Web -->
     <BrowserName>chrome</BrowserName>
@@ -19,4 +23,8 @@
     <AppPackage>com.shivgadhia.android.ukMortgageCalc</AppPackage>
     <APPACTIVITY>.MainActivity</APPACTIVITY>
     <AppiumServer>http://localhost:4723/wd/hub</AppiumServer>
+
+    <!--API-->
+    <urlAPI>http://localhost:3000/</urlAPI>
+
 </Enviroment>

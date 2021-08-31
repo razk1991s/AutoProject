@@ -28,13 +28,15 @@ public class Listeners extends CommonOps implements ITestListener {
     public void onTestFailure(ITestResult test)
     {
         System.out.println("------------Test: "+test.getName()+" Failed ---------------");
-        //make screen shot
-        saveScreenShot();
-        //stop recording
-        try {
-            monteScreenRecorder.stopRecord();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(!getData("PlatformName").equalsIgnoreCase("api")){
+            //make screen shot
+            saveScreenShot();
+            //stop recording
+            try {
+                monteScreenRecorder.stopRecord();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -51,18 +53,20 @@ public class Listeners extends CommonOps implements ITestListener {
     public void onTestSuccess(ITestResult test)
     {
         System.out.println("------------Test: "+test.getName()+" Passed ---------------");
-        // stop recording
-        try {
-            monteScreenRecorder.stopRecord();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(!getData("PlatformName").equalsIgnoreCase("api")){
+            // stop recording
+            try {
+                monteScreenRecorder.stopRecord();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            File file = new File("./test-recordings/"+test.getName()+ ".avi");
+            // delete the file
+            if (file.delete())
+                System.out.println("file deleted successfully");
+            else
+                System.out.println("failed to delete file");
         }
-        File file = new File("./test-recordings/"+test.getName()+ ".avi");
-        // delete the file
-        if (file.delete())
-            System.out.println("file deleted successfully");
-        else
-            System.out.println("failed to delete file");
     }
 
     @Attachment(value = "Page Screen-Shot", type = "image/png")

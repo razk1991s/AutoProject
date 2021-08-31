@@ -4,6 +4,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.restassured.RestAssured;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -99,12 +100,19 @@ public class CommonOps extends Base {
         wait =new WebDriverWait(mobileDriver,Long.parseLong(getData("TimeOut")));
     }
 
+    public static void initAPI(){
+        RestAssured.baseURI = getData("urlAPI");
+        httpRequest = RestAssured.given().auth().preemptive().basic(getData("UserName"),getData("Password"));
+    }
+
     @BeforeClass
     public void startSession() {
         if (getData("PlatformName").equalsIgnoreCase("web"))
             initBrowser(getData("BrowserName"));
         else if (getData("PlatformName").equalsIgnoreCase("mobile"))
             initMobile();
+        else if (getData("PlatformName").equalsIgnoreCase("api"))
+            initAPI();
         else throw new RuntimeException("Invalid platform name");
 
         softAssert = new SoftAssert();
@@ -113,9 +121,11 @@ public class CommonOps extends Base {
 
     @AfterClass
     public void closeSession() {
-        if (!getData("PlatformName").equalsIgnoreCase("mobile"))
-        driver.quit();
-        else mobileDriver.quit();
+        if(!getData("PlatformName").equalsIgnoreCase("api")){
+            if (!getData("PlatformName").equalsIgnoreCase("mobile"))
+                driver.quit();
+            else mobileDriver.quit();
+        }
     }
 
     @AfterMethod
@@ -126,10 +136,12 @@ public class CommonOps extends Base {
 
     @BeforeMethod
     public void beforeMethod(Method method){
-        try {
-            monteScreenRecorder.startRecord(method.getName());
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(!getData("PlatformName").equalsIgnoreCase("api")){
+            try {
+                monteScreenRecorder.startRecord(method.getName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
