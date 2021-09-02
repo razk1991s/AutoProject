@@ -1,7 +1,10 @@
 # Raz Keisar
 
-## This is MyProject
+## My project contains:
 
-### Automation Test
+### Build an infrastructure for working with automation, 
+### and in it you will find the types of automated tests: client, mobile, and server by:
 
-``this is my code``
+``Selenium``
+``Appium``
+``Rest API (Rest-Assured)``
