@@ -60,20 +60,6 @@
             <version>4.1.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
-            <scope>test</scope>
-        </dependency>
-
-        //---if you want to run appium make all this to command----
-        <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>7.2.0</version>
-        </dependency>
-        //----------------------------------------------------------
 
         <dependency>
             <groupId>io.rest-assured</groupId>
