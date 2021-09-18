@@ -46,4 +46,7 @@ public class Base {
     //Page objects - Mobile
     protected static pageObjects.Mortgage.MainPage mortMainPage;
 
+    //Page objects - Electron
+    protected static pageObjects.todo.MainPage todoMain;
+
 }

@@ -4,7 +4,7 @@
     <TimeOut>5</TimeOut>
 
     <!-- General -->
-    <PlatformName>api</PlatformName>
+    <PlatformName>electron</PlatformName>
 
     <!--Authorization -->
     <UserName>admin</UserName>
@@ -26,5 +26,9 @@
 
     <!--API-->
     <urlAPI>http://localhost:3000/</urlAPI>
+
+    <!--Electron-->
+    <ElectronDriverPath>./Drivers/electrondriver.exe</ElectronDriverPath>
+    <ElectronAppPath>C:/Users/Raz/AppData/Local/Programs/todolist/Todolist.exe</ElectronAppPath>
 
 </Enviroment>

@@ -23,4 +23,8 @@ public class ManagePages extends Base {
     public static void initMortgage(){
         mortMainPage = new pageObjects.Mortgage.MainPage(mobileDriver);
     }
+
+    public static void initTodo(){
+        todoMain = PageFactory.initElements(driver,pageObjects.todo.MainPage.class);
+    }
 }

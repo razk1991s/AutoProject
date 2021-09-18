@@ -8,6 +8,7 @@ import io.restassured.RestAssured;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -105,6 +106,16 @@ public class CommonOps extends Base {
         httpRequest = RestAssured.given().auth().preemptive().basic(getData("UserName"),getData("Password"));
     }
 
+    public static void initElectron(){
+       System.setProperty("webdriver.chrome.driver", getData("ElectronDriverPath"));
+        ChromeOptions opt = new ChromeOptions();
+        opt.setBinary(getData("ElectronAppPath"));
+        dc.setCapability("chromeOptions", opt);
+        dc.setBrowserName("chrome");
+        driver = new ChromeDriver(dc);
+        ManagePages.initTodo();
+    }
+
     @BeforeClass
     public void startSession() {
         if (getData("PlatformName").equalsIgnoreCase("web"))
@@ -113,6 +124,8 @@ public class CommonOps extends Base {
             initMobile();
         else if (getData("PlatformName").equalsIgnoreCase("api"))
             initAPI();
+        else if (getData("PlatformName").equalsIgnoreCase("electron"))
+            initElectron();
         else throw new RuntimeException("Invalid platform name");
 
         softAssert = new SoftAssert();
