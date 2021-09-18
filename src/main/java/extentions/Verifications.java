@@ -56,6 +56,11 @@ public class Verifications extends CommonOps {
     public static void verifyText(String actual, String expected){
         assertEquals(actual,expected);
     }
+
+    @Step("verify number with number")
+    public static void verifyNumber(int actual, int expected){
+        assertEquals(actual,expected);
+    }
 }
 
 
