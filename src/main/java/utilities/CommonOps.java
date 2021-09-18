@@ -17,6 +17,7 @@ import org.sikuli.script.Screen;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
+import workFlows.ElectronFlows;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -64,9 +65,6 @@ public class CommonOps extends Base {
         driver.get(getData("url"));
         driver.manage().window().maximize();
         ManagePages.initGrafana();
-        action = new Actions(driver);
-
-
     }
 
     public static WebDriver initChromeDriver() {
@@ -114,6 +112,8 @@ public class CommonOps extends Base {
         dc.setBrowserName("chrome");
         driver = new ChromeDriver(dc);
         ManagePages.initTodo();
+        driver.manage().timeouts().implicitlyWait(Long.parseLong(getData("TimeOut")), TimeUnit.SECONDS);
+        wait =new WebDriverWait(driver,Long.parseLong(getData("TimeOut")));
     }
 
     @BeforeClass
@@ -130,6 +130,7 @@ public class CommonOps extends Base {
 
         softAssert = new SoftAssert();
         screen = new Screen();
+        action = new Actions(driver);
     }
 
     @AfterClass
@@ -145,6 +146,8 @@ public class CommonOps extends Base {
     public void afterMethod(){
         if (getData("PlatformName").equalsIgnoreCase("web"))
         driver.get(getData("url"));
+        else if (getData("PlatformName").equalsIgnoreCase("electron"))
+            ElectronFlows.emptyLists();
     }
 
     @BeforeMethod

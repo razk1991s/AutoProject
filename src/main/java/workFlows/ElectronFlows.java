@@ -14,7 +14,15 @@ public class ElectronFlows extends CommonOps {
     }
 
     @Step("count and return number of tasks in list")
-    public static int getNumberOfTasks(String taskName) {
+    public static int getNumberOfTasks() {
         return todoMain.list_task.size();
+    }
+
+    @Step("empty lists from tasks")
+    public static void emptyLists() {
+        for(int i=0; i<getNumberOfTasks(); i++){
+            UIActions.mouseHover(todoMain.btn_X);
+        }
+
     }
 }
