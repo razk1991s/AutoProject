@@ -31,4 +31,8 @@
     <ElectronDriverPath>./Drivers/electrondriver.exe</ElectronDriverPath>
     <ElectronAppPath>C:/Users/Raz/AppData/Local/Programs/todolist/Todolist.exe</ElectronAppPath>
 
+    <!--DATA BASE-->
+    <DBURL>jdbc:mysql://remotemysql.com:3306/xmxwWsQol1</DBURL>
+    <DBUserName>xmxwWsQol1</DBUserName>
+    <DBPassword>mZli3qhCwC</DBPassword>
 </Enviroment>

@@ -14,6 +14,10 @@ import pageObjects.grafana.*;
 import pageObjects.Mortgage.*;
 import io.restassured.response.Response;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class Base {
     //General:
     protected static WebDriverWait wait;
@@ -33,6 +37,11 @@ public class Base {
     protected static Response response;
     protected static JSONObject params = new JSONObject();
     protected static JsonPath jp;
+
+    //DB
+    protected static Connection con;
+    protected static Statement stmt;
+    protected static ResultSet rs;
 
     //Page Objects - Web
     protected static pageObjects.grafana.LoginPage grafanaLogin;

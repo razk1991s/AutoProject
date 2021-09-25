@@ -131,6 +131,7 @@ public class CommonOps extends Base {
         softAssert = new SoftAssert();
         screen = new Screen();
         action = new Actions(driver);
+        ManageDB.openConnection(getData("DBURL"), getData("DBUserName"),getData("DBPassword"));
     }
 
     @AfterClass
