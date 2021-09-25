@@ -8,5 +8,5 @@
 ``Selenium``
 ``Appium``
 ``Rest API (Rest-Assured)``
-``DB with remotemysql``
+``Removal from the DB (SQL) ``
 ``Electron``
