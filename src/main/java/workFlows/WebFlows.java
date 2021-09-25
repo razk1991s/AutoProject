@@ -1,9 +1,12 @@
 package workFlows;
 
+import extentions.DBActions;
 import extentions.UIActions;
 import extentions.Verifications;
 import io.qameta.allure.Step;
 import utilities.CommonOps;
+
+import java.util.List;
 
 public class WebFlows extends CommonOps {
 
@@ -11,6 +14,18 @@ public class WebFlows extends CommonOps {
     public static void login(String user, String pass){
         UIActions.updateText(grafanaLogin.txt_userName, user);
         UIActions.updateText(grafanaLogin.txt_password, pass);
+        UIActions.click(grafanaLogin.btn_Login);
+        UIActions.click(grafanaLogin.btn_Skip);
+    }
+
+    @Step("business flow: login grafana with  login credentials (DB)")
+    public static void loginDB(){
+        String query = "SELECT name, password " +
+                        "FROM employees " +
+                         "WHERE id=3";
+        List<String> cred = DBActions.getCredentials(query);
+        UIActions.updateText(grafanaLogin.txt_userName, cred.get(0));
+        UIActions.updateText(grafanaLogin.txt_password, cred.get(1));
         UIActions.click(grafanaLogin.btn_Login);
         UIActions.click(grafanaLogin.btn_Skip);
     }
@@ -41,6 +56,6 @@ public class WebFlows extends CommonOps {
         Verifications.nontExistenceOfElements(grafanaServerAdminMain.rows);
         else
             throw new RuntimeException("invalid expected output in data driven testing, should been exists or not exists");
-
     }
+
 }

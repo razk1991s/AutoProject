@@ -1,5 +1,6 @@
 package extentions;
 
+import io.qameta.allure.Step;
 import utilities.CommonOps;
 
 import java.sql.SQLException;
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class DBActions extends CommonOps {
 
+    @Step("get credentials from DB")
     public static List<String> getCredentials(String query){
         List<String> credentials = new ArrayList<String>();
         try {
