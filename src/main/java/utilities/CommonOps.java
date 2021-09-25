@@ -136,6 +136,7 @@ public class CommonOps extends Base {
 
     @AfterClass
     public void closeSession() {
+        ManageDB.closeConnection();
         if(!getData("PlatformName").equalsIgnoreCase("api")){
             if (!getData("PlatformName").equalsIgnoreCase("mobile"))
                 driver.quit();
