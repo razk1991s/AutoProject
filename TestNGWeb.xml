@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Web Suite" parallel="false">
     <test name="Web Test">
+        <parameter name="PlatformName" value="web"></parameter>
 <!--        <packages>-->
 <!--            <package name="sanity"></package>-->
 <!--        </packages>-->

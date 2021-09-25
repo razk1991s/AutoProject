@@ -3,9 +3,6 @@
     <!-- TimeOut -->
     <TimeOut>5</TimeOut>
 
-    <!-- General -->
-    <PlatformName>web</PlatformName>
-
     <!--Authorization -->
     <UserName>admin</UserName>
     <Password>admin</Password>

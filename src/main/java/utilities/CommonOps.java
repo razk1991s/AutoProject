@@ -5,7 +5,6 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.RestAssured;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -117,14 +116,16 @@ public class CommonOps extends Base {
     }
 
     @BeforeClass
-    public void startSession() {
-        if (getData("PlatformName").equalsIgnoreCase("web"))
+    @Parameters({"PlatformName"})
+    public void startSession(String PlatformName) {
+        platform = PlatformName;
+        if (platform.equalsIgnoreCase("web"))
             initBrowser(getData("BrowserName"));
-        else if (getData("PlatformName").equalsIgnoreCase("mobile"))
+        else if (platform.equalsIgnoreCase("mobile"))
             initMobile();
-        else if (getData("PlatformName").equalsIgnoreCase("api"))
+        else if (platform.equalsIgnoreCase("api"))
             initAPI();
-        else if (getData("PlatformName").equalsIgnoreCase("electron"))
+        else if (platform.equalsIgnoreCase("electron"))
             initElectron();
         else throw new RuntimeException("Invalid platform name");
 
@@ -137,8 +138,8 @@ public class CommonOps extends Base {
     @AfterClass
     public void closeSession() {
         ManageDB.closeConnection();
-        if(!getData("PlatformName").equalsIgnoreCase("api")){
-            if (!getData("PlatformName").equalsIgnoreCase("mobile"))
+        if(!platform.equalsIgnoreCase("api")){
+            if (!platform.equalsIgnoreCase("mobile"))
                 driver.quit();
             else mobileDriver.quit();
         }
@@ -146,15 +147,15 @@ public class CommonOps extends Base {
 
     @AfterMethod
     public void afterMethod(){
-        if (getData("PlatformName").equalsIgnoreCase("web"))
+        if (platform.equalsIgnoreCase("web"))
         driver.get(getData("url"));
-        else if (getData("PlatformName").equalsIgnoreCase("electron"))
+        else if (platform.equalsIgnoreCase("electron"))
             ElectronFlows.emptyLists();
     }
 
     @BeforeMethod
     public void beforeMethod(Method method){
-        if(!getData("PlatformName").equalsIgnoreCase("api")){
+        if(!platform.equalsIgnoreCase("api")){
             try {
                 monteScreenRecorder.startRecord(method.getName());
             } catch (Exception e) {

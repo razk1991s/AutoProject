@@ -28,7 +28,7 @@ public class Listeners extends CommonOps implements ITestListener {
     public void onTestFailure(ITestResult test)
     {
         System.out.println("------------Test: "+test.getName()+" Failed ---------------");
-        if(!getData("PlatformName").equalsIgnoreCase("api")){
+        if(!platform.equalsIgnoreCase("api")){
             //make screen shot
             saveScreenShot();
             //stop recording
@@ -53,7 +53,7 @@ public class Listeners extends CommonOps implements ITestListener {
     public void onTestSuccess(ITestResult test)
     {
         System.out.println("------------Test: "+test.getName()+" Passed ---------------");
-        if(!getData("PlatformName").equalsIgnoreCase("api")){
+        if(!platform.equalsIgnoreCase("api")){
             // stop recording
             try {
                 monteScreenRecorder.stopRecord();
@@ -71,7 +71,7 @@ public class Listeners extends CommonOps implements ITestListener {
 
     @Attachment(value = "Page Screen-Shot", type = "image/png")
     public byte [] saveScreenShot(){
-        if (!getData("PlatformName").equalsIgnoreCase("mobile"))
+        if (!platform.equalsIgnoreCase("mobile"))
             return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
         else
             return ((TakesScreenshot)mobileDriver).getScreenshotAs(OutputType.BYTES);

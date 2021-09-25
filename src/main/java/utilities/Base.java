@@ -24,6 +24,7 @@ public class Base {
     protected  static Actions action;
     protected static SoftAssert softAssert;
     protected static Screen screen;
+    protected static String platform;
 
     //Web:
     protected static WebDriver driver;
