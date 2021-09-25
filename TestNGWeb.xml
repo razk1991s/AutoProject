@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Web Suite" parallel="false">
+    <test name="Web Test">
+<!--        <packages>-->
+<!--            <package name="sanity"></package>-->
+<!--        </packages>-->
+        <classes>
+            <class name="sanity.GrafanaWeb">
+                <methods>
+                    <include name="test01_verifyHeader"></include>
+                    <include name="test02_verify_default_users"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
