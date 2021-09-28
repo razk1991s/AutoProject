@@ -3,7 +3,7 @@
 ## My project contains:
 
 ### Build an infrastructure for working with automation, 
-### and in it you will find the types of automated tests: Client, Server, Mobile, DB, and more:
+### types of automated tests: Client, Server, Mobile, DB, and more:
 
 ``Selenium``
 ``Appium``
